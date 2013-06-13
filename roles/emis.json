@@ -1,14 +1,15 @@
 {
-  "name": "tangerine",
-  "description": "",
+  "name": "drupal",
+  "description": "Basic Drupal Installation with Drush",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
   "override_attributes": {
+
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[couchdb]"
+     "recipe[mysql::server]"
   ],
   "env_run_lists": {
   }

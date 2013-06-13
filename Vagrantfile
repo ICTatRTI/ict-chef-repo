@@ -28,14 +28,15 @@ Vagrant.configure("2") do |config|
      chef.roles_path = "./roles"
      #chef.data_bags_path = "../my-recipes/data_bags"
      chef.add_role "base"
+     chef.add_role "emis"
      
      # You may also specify custom JSON attributes:
      chef.json = { 
 
      :mysql => {
-        :server_root_password => 'drupal',
-        :server_repl_password => 'drupal',
-        :server_debian_password => 'drupal'
+        :server_root_password => 'idguser',
+        :server_repl_password => 'idgpass',
+        :server_debian_password => 'idgpass'
       }
 
      }
