@@ -1,6 +1,6 @@
 {
-  "name": "drupal",
-  "description": "Basic Drupal Installation with Drush",
+  "name": "EMIS Toolbox",
+  "description": "EMIS Toolbox Server",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
