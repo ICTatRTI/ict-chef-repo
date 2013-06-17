@@ -20,10 +20,10 @@ Vagrant.configure("2") do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  #config.vm.host_name = "drupal"
+  #config.vm.host_name = "emis"
 
   config.vm.provision :chef_solo do |chef|
-     chef.node_name = "drupal"
+     chef.node_name = "emis"
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      #chef.data_bags_path = "../my-recipes/data_bags"
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
      chef.json = { 
 
      :mysql => {
-        :server_root_password => 'idguser',
+        :server_root_password => 'idgpass',
         :server_repl_password => 'idgpass',
         :server_debian_password => 'idgpass'
       }

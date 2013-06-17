@@ -1,5 +1,5 @@
 {
-  "name": "EMIS Toolbox",
+  "name": "emis_toolbox",
   "description": "EMIS Toolbox Server",
   "json_class": "Chef::Role",
   "default_attributes": {
