@@ -22,23 +22,21 @@ Vagrant.configure("2") do |config|
   #
   #config.vm.host_name = "emis"
 
+  config.vm.network :forwarded_port, guest: 8080, host: 8888
+  config.vm.network :forwarded_port, guest: 3306, host: 3333
+
   config.vm.provision :chef_solo do |chef|
-     chef.node_name = "emis"
+
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      #chef.data_bags_path = "../my-recipes/data_bags"
      chef.add_role "base"
      chef.add_role "emis"
      
+
      # You may also specify custom JSON attributes:
      chef.json = { 
-
-     :mysql => {
-        :server_root_password => 'idgpass',
-        :server_repl_password => 'idgpass',
-        :server_debian_password => 'idgpass'
-      }
-
+      'name' => 'emis toolbox',
      }
 
 

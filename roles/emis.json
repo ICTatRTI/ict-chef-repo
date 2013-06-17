@@ -5,11 +5,17 @@
   "default_attributes": {
   },
   "override_attributes": {
-
+    "mysql": {
+     "server_root_password": "idgpass",
+     "server_repl_password": "idgpass",
+     "server_debian_password": "idgpass"
+    }
   },
   "chef_type": "role",
   "run_list": [
-     "recipe[mysql::server]"
+     "recipe[mysql::server]",
+     "recipe[tomcat]",
+     "recipe[emis_toolkit]"
   ],
   "env_run_lists": {
   }
