@@ -22,3 +22,14 @@ cookbook_file "#{node.tomcat.webapp_dir}/emistoolbox.war" do
   mode 0755
 end
 
+directory "/opt/emistoolbox" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+end
+
+cookbook_file "/opt/emistoolbox/users.xml" do
+  source "users.xml"
+  mode 0755
+end

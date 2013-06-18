@@ -9,6 +9,10 @@
      "server_root_password": "idgpass",
      "server_repl_password": "idgpass",
      "server_debian_password": "idgpass"
+    },
+     "tomcat": {
+     "java_options": "${JAVA_OPTS} -Demistoolbox.path=/opt/emistoolbox/ -Demistoolbox.path.writable=/opt/emistoolbox/"
+
     }
   },
   "chef_type": "role",
