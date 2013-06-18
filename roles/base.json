@@ -10,7 +10,8 @@
   "run_list": [
     "recipe[apt]",
     "recipe[git]",
-    "recipe[curl]"
+    "recipe[curl]",
+    "recipe[ict_utility]"
   ],
   "env_run_lists": {
   }

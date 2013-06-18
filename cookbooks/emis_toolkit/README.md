@@ -1,21 +1,14 @@
-emis_toolkit Cookbook
+EMIS_toolkit Cookbook
 =====================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+The EMIS Toolkit server is a java web application packaged as a jar file.  This cookbook provides all of the configuration nuances to get this server running.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - emis_toolkit needs toaster to brown your bagel.
+EMIS requires a servlet container.  This cookbook uses Tomcat6.
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
+There are no attributes for now.  If there where though, this is how they would be documented:
 
 e.g.
 #### emis_toolkit::default
@@ -46,14 +39,16 @@ Just include `emis_toolkit` in your node's `run_list`:
 {
   "name":"my_node",
   "run_list": [
-    "recipe[emis_toolkit]"
+   "recipe[mysql::server]",
+   "recipe[tomcat]"
+   "recipe[emis_toolkit]"
   ]
 }
 ```
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
+If you want to contribute to this, by all means, do these things:
 
 e.g.
 1. Fork the repository on Github
@@ -65,4 +60,4 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Adam Preston (apreston@rti.org)

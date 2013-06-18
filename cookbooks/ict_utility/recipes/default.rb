@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: emus_toolkit
+# Cookbook Name:: ict_utility
 # Recipe:: default
 #
-# Copyright 2013, RTI
+# Copyright 2013, YOUR_COMPANY_NAME
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,20 +17,10 @@
 # limitations under the License.
 #
 
+ package "unzip" do
+    action :install
+  end 
 
-cookbook_file "#{node.tomcat.webapp_dir}/emistoolbox.war" do
-  source "emistoolbox.war"
-  mode 0755
-end
-
-directory "/opt/emistoolbox" do
-  owner "root"
-  group "#{node.tomcat.user}"
-  mode 00774
-  action :create
-end
-
-cookbook_file "/opt/emistoolbox/users.xml" do
-  source "users.xml"
-  mode 0755
-end
+  package "vim" do
+    action :install
+  end   
