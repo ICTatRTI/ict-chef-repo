@@ -34,3 +34,30 @@ cookbook_file "/opt/emistoolbox/users.xml" do
   source "users.xml"
   mode 0755
 end
+
+directory "/opt/emistoolbox/default" do
+  owner "root"
+  group "#{node.tomcat.user}"
+  mode 00774
+  action :create
+end
+
+cookbook_file "/opt/emistoolbox/default/data.bin" do
+  source "data.bin"
+  mode 0755
+end
+
+cookbook_file "/opt/emistoolbox/default/model.xml" do
+  source "model.xml"
+  mode 0755
+end
+
+cookbook_file "/opt/emistoolbox/default/report.xml" do
+  source "report.xml"
+  mode 0755
+end
+
+cookbook_file "/opt/emistoolbox/default/mapping.xml" do
+  source "mapping.xml"
+  mode 0755
+end

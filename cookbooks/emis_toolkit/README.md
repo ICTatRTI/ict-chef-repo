@@ -1,4 +1,4 @@
-EMIS_toolkit Cookbook
+EMIS Toolkit Cookbook
 =====================
 The EMIS Toolkit server is a java web application packaged as a jar file.  This cookbook provides all of the configuration nuances to get this server running.
 

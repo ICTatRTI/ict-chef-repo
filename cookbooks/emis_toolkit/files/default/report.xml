@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<emisReportModule defaultDateIndex="2">
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of students (BoY)" type="simple">
+        <aggregator entity="District" field="Enrolment BoY" key="result" name="pupils/students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of students (EoY)" type="simple">
+        <aggregator entity="District" field="Enrolment EoY" key="result" name="No. of students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of dropouts (by cause)" type="simple">
+        <aggregator entity="District"
+            field="Enrolment Drop-out by Cause" key="result" name="No. of dropouts"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Enrolment by background" type="simple">
+        <aggregator entity="District" field="Enrolment by Background"
+            key="result" name="No. of students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Enrolment by disability" type="simple">
+        <aggregator entity="District" field="Enrolment by Disability"
+            key="result" name="No. of students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Enrolment by program" type="simple">
+        <aggregator entity="District" field="Enrolment by Program"
+            key="result" name="No. of students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of teachers by position" type="simple">
+        <aggregator entity="District" field="Teacher Plantillas"
+            key="result" name="No. of teachers"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of teachers by level" type="simple">
+        <aggregator entity="District"
+            field="Teachers Plantillas by Level" key="result" name="No. of teachers"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of teachers by funding" type="simple">
+        <aggregator entity="District" field="Teachers by Funding"
+            key="result" name="No. of teachers"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of teachers by status" type="simple">
+        <aggregator entity="District" field="Teachers by Status"
+            key="result" name="No. of teachers"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of instructional rooms by state" type="simple">
+        <aggregator entity="District" field="Classrooms by State"
+            key="result" name="No. of classrooms"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of instructional rooms by funding" type="simple">
+        <aggregator entity="District" field="Classrooms by Funding"
+            key="result" name="No. of classrooms"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of instructional rooms by use" type="simple">
+        <aggregator entity="District" field="Classrooms by Use"
+            key="result" name="No. of classrooms"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of toilets" type="simple">
+        <aggregator entity="District" field="Toilets" key="result" name="No. of toilets"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Availability of water" type="simple">
+        <aggregator entity="District" field="Water" key="result" name="No. of water points"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Availability of computers" type="simple">
+        <aggregator entity="District" field="Computer" key="result" name="No. of computers"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Availability of internet" type="simple">
+        <aggregator entity="District" field="Computer Connection"
+            key="result" name="No. of connections"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" good="NaN" max="NaN"
+        name="Count of schools" type="simple">
+        <aggregator entity="District" field="School Count" key="result" name="No. of schools"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="1.0" good="NaN"
+        max="NaN" name="Pupil / Teacher ratio (BoY)" type="ratio">
+        <aggregator entity="District" field="Enrolment BoY"
+            key="numerator" name="pupils">
+            <context type="full">
+                <enumFilter enumType="grade" key="grade" values="1,2,3,4,5,6,7,8,9,10,11,12"/>
+            </context>
+        </aggregator>
+        <aggregator entity="District"
+            field="Teachers Plantillas by Level" key="denominator" name="teachers">
+            <context type="full">
+                <enumFilter enumType="teacher grades"
+                    key="teacher grades" values="0,1"/>
+            </context>
+        </aggregator>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="1.0" good="NaN"
+        max="NaN" name="Pupil / Teacher ratio (EoY)" type="ratio">
+        <aggregator entity="District" field="Enrolment EoY"
+            key="numerator" name="pupils (eoy)"/>
+        <aggregator entity="District" field="Teacher Plantillas"
+            key="denominator" name="teachers">
+            <context type="full">
+                <enumFilter enumType="teaching position"
+                    key="teaching position" values="0,1,2,3,4,5"/>
+            </context>
+        </aggregator>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="1.0" good="NaN"
+        max="NaN" name="Pupil / Toilet Ratio" type="ratio">
+        <aggregator entity="District" field="Enrolment BoY"
+            key="numerator" name="Pupils"/>
+        <aggregator entity="District" field="Toilets" key="denominator" name="Toilets"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="1.0" good="NaN"
+        max="NaN" name="pupil / classroom ratio" type="ratio">
+        <aggregator entity="District" field="Enrolment BoY"
+            key="numerator" name="pupils"/>
+        <aggregator entity="District" field="Classrooms by State"
+            key="denominator" name="classrooms"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="100.0" good="NaN"
+        max="NaN" name="% of muslim students" type="ratio">
+        <aggregator entity="District" field="Enrolment by Background"
+            key="numerator" name="muslim students">
+            <context type="full">
+                <enumFilter enumType="enrolment background"
+                    key="enrolment background" values="2"/>
+            </context>
+        </aggregator>
+        <aggregator entity="District" field="Enrolment BoY"
+            key="denominator" name="all students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="100.0" good="NaN"
+        max="NaN" name="Percentage of Indigenous " type="ratio">
+        <aggregator entity="District" field="Enrolment by Background"
+            key="numerator" name="Indigenous enrollment">
+            <context type="full">
+                <enumFilter enumType="enrolment background"
+                    key="enrolment background" values="3"/>
+            </context>
+        </aggregator>
+        <aggregator entity="District" field="Enrolment BoY"
+            key="denominator" name="Students"/>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="100.0" good="NaN"
+        max="NaN" name="Simple Dropout Rate" type="ratio">
+        <aggregator entity="District" field="Enrolment EoY"
+            key="numerator" name="dropouts">
+            <context type="full">
+                <enumFilter enumType="enrolment type"
+                    key="enrolment type" values="1"/>
+            </context>
+        </aggregator>
+        <aggregator entity="District" field="Enrolment EoY"
+            key="denominator" name="total enrolment">
+            <context type="full">
+                <enumFilter enumType="enrolment type"
+                    key="enrolment type" values="0"/>
+            </context>
+        </aggregator>
+    </indicator>
+    <indicator bad="NaN" bigIsBetter="false" factor="1.0" good="NaN"
+        max="NaN" name="Pupil / Seat Ratio" type="ratio">
+        <aggregator entity="District" field="Enrolment BoY"
+            key="numerator" name="pupils/students"/>
+        <aggregator entity="District" field="Furniture"
+            key="denominator" name="seats"/>
+    </indicator>
+    <pdfReport cols="1" entityType="Nation" name="National Stats"
+        pageOrientation="PORTRAIT" pageSize="A4" rows="1">
+        <title>National Stats</title>
+        <subtitle/>
+        <footer/>
+        <pdfContent chartType="0" type="chart">
+            <tableMetaResult hierarchy="Academic">
+                <metaResultValues>
+                    <metaResultValue indicator="Count of schools"/>
+                </metaResultValues>
+                <context dateType="Year" type="full">
+                    <date date="2011" dateEnum="Year"/>
+                </context>
+                <dimension dateIndex="0" entityType="Nation"
+                    hierarchy="Academic"
+                    name="All Regions for Nation 'Phillipines' 'Phillipines' 'Phillipines' 'Phillipines'" type="entityChildren">
+                    <entity id="1" name="Phillipines"/>
+                </dimension>
+                <dimension enum="education level"
+                    name="By education level" type="enum"/>
+            </tableMetaResult>
+        </pdfContent>
+    </pdfReport>
+</emisReportModule>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<emisMeta>
+    <enums>
+        <enum id="education level" values="kindergarden,elementary,secondary"/>
+        <enum id="water" values="local piped,well,rainwater,natural source,without"/>
+        <enum id="gender" values="male,female"/>
+        <enum id="teaching position" values="Master Teacher II,Master Teacher I,Teacher III,Teacher II,Teacher I,Instructor I-III,SPED,Pre School"/>
+        <enum id="staff funding" values="SEF,LGU,PTCA,Volunteer,ALIVE teacher,Others,DepED subsidized"/>
+        <enum id="usage" values="academic,admin,needs repair"/>
+        <enum id="funding" values="DepEd,DepEd counterpart,LGU/SEF,PTCA,Congress,Foreign donor,Other Gov't Agency,Private,Other"/>
+        <enum id="room repair state" values="Minor,Major"/>
+        <enum id="classroom type" values="academic classroom,science lab,HE room,IA/Workshop,computer room,not used"/>
+        <enum id="plantilla" values="actual,on leave,vacant,detailed"/>
+        <enum id="furniture" values="Desks,Chairs/Armchairs"/>
+        <enum id="enrolment type" values="completed,drop-out"/>
+        <enum id="sec school program" values="Regular,Science and Technology,Arts,Sports,Arts and Trades,Agriculture,Fishery"/>
+        <enum id="grade" values="KG,Gr 1,Gr 2,Gr 3,Gr 4,Gr 5,Gr 6,Yr 1,Yr 2,Yr 3,Yr 4,Yr 5"/>
+        <enum id="enrolment background" values="SPED,Balik-Aral,Muslim,Indigenous,CCT/4Ps"/>
+        <enum id="enrolment impairment" values="Learning,Hearing,Blindness,Low Vision,Intelectually/Mental,Multiple,Behavioral,Orthopedically,Autism,Communication Disorder,Cerebal Palsy,Special Health"/>
+        <enum id="electricity" values="Grid,Generator,Solar,No electricity"/>
+        <enum id="dropout cause" values="domestic,individual,school,environmental,financial,other"/>
+        <enum id="computer connection" values="wired,wireless,satelitte,USB modem,no service"/>
+        <enum id="Performance district indicators" values="Promotion,Repetitions,School Leaver,Failure Rate,Simple Dropout"/>
+        <enum id="Performance division indicators" values="Apparent Intake,Net Intake,Gross Enrolment,Cohort Survival,Net Enrolment"/>
+        <enum id="Performance indicator by Level" values="Transition,Retention"/>
+        <enum id="teacher assignment" values="Grades 1-6,Years 1-5,SPED,Kindergarden,ALS (mobile teacher),ALS Coordinator"/>
+        <enum id="NAT grade" values="Grade 3,Grade 6,Y2/Y4"/>
+        <enum id="NAT subject" values="Filipino,English,Math,Science"/>
+        <enum id="NAT standard" values="Superior,Meeting Standard,Below Standard,Poor"/>
+        <enum id="school type" values="monograde,multigrade,combined"/>
+        <enum id="teacher specialization" values="with major/minor,not their major/minor"/>
+    </enums>
+    <entities>
+        <entity gisType="NONE" id="Nation">
+            <data dataType="STRING" date="Year" entity="Nation"
+                id="name" planningResource="false"/>
+        </entity>
+        <entity gisType="NONE" id="Region">
+            <data dataType="STRING" date="Year" entity="Region"
+                id="name" planningResource="false"/>
+        </entity>
+        <entity gisType="NONE" id="Division">
+            <data dataType="STRING" date="Year" entity="Division"
+                id="name" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,education level,Performance division indicators"
+                entity="Division"
+                id="Performance Indicator by Level numerator" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,education level,Performance division indicators"
+                entity="Division"
+                id="Performance Indicator by Level denominator" planningResource="false"/>
+        </entity>
+        <entity gisType="NONE" id="District">
+            <data dataType="STRING" date="Year" entity="District"
+                id="name" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="funding,usage" entity="District"
+                id="Computer" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="computer connection,usage" entity="District"
+                id="Computer Connection" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="electricity,education level"
+                entity="District" id="Electricity" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="furniture,education level" entity="District"
+                id="Furniture" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,education level" entity="District"
+                id="Toilets" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="water,education level" entity="District"
+                id="Water" planningResource="true"/>
+            <data dataType="INTEGER" date="Year" dimensions="funding"
+                entity="District" id="Classrooms by Funding" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="classroom type,education level"
+                entity="District" id="Classrooms by Use" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="room repair state,education level"
+                entity="District" id="Classrooms by State" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade" entity="District"
+                id="Enrolment BoY" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,enrolment type"
+                entity="District" id="Enrolment EoY" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,sec school program"
+                entity="District" id="Enrolment by Program" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,enrolment background"
+                entity="District" id="Enrolment by Background" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,enrolment impairment"
+                entity="District" id="Enrolment by Disability" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="staff funding,education level"
+                entity="District" id="Teachers by Funding" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="teaching position,plantilla"
+                entity="District" id="Teacher Plantilla" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,Performance district indicators"
+                entity="District"
+                id="Performance Indicator by Grade numerator" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,Performance district indicators"
+                entity="District"
+                id="Performance Indicator by Grade denominator" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,education level,Performance indicator by Level"
+                entity="District"
+                id="Performance indicator by Level numerator" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,education level,Performance indicator by Level"
+                entity="District"
+                id="Performance indicator by Level denominator" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade,dropout cause"
+                entity="District" id="Enrolment Drop-out by Cause" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="education level,school type"
+                entity="District" id="School Count" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="teacher assignment" entity="District"
+                id="Teachers Plantilla by Level" planningResource="true"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="NAT grade,NAT subject" entity="District"
+                id="NAT Students" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="NAT grade,NAT subject,NAT standard"
+                entity="District" id="NAT Standard" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="NAT grade,NAT subject" entity="District"
+                id="NAT MPS" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="NAT subject,teacher specialization"
+                entity="District" id="Teachers by specialization (GSSP)" planningResource="false"/>
+            <data dataType="INTEGER" date="Year"
+                dimensions="gender,grade" entity="District"
+                id="Enrolment Overage" planningResource="false"/>
+        </entity>
+    </entities>
+    <dates>
+        <dateEnum id="Year" values="2010,2011,2012"/>
+    </dates>
+    <hierarchies>
+        <hierarchy entities="Nation,Region,Division,District" id="Academic"/>
+    </hierarchies>
+</emisMeta>
