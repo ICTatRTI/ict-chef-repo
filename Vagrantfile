@@ -14,13 +14,11 @@ Vagrant.configure("2") do |config|
   # doesn't already exist on the user's system.
   config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
 
-  
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  #config.vm.host_name = "emis"
 
   config.vm.network :forwarded_port, guest: 8080, host: 8888
   config.vm.network :forwarded_port, guest: 3306, host: 3333
@@ -31,8 +29,7 @@ Vagrant.configure("2") do |config|
      chef.roles_path = "./roles"
      #chef.data_bags_path = "../my-recipes/data_bags"
      chef.add_role "base"
-     chef.add_role "emis"
-     
+     #chef.add_role "tangerine-server"
 
      # You may also specify custom JSON attributes:
      chef.json = { 
