@@ -24,16 +24,11 @@ Vagrant.configure("2") do |config|
   config.vm.network :forwarded_port, guest: 3306, host: 3333
 
   config.vm.provision :chef_solo do |chef|
-
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      #chef.data_bags_path = "../my-recipes/data_bags"
      chef.add_role "base"
      chef.add_role "tangerine-server"
-
-     
-
-
    end
 
   

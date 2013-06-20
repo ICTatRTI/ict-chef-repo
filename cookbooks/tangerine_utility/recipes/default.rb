@@ -17,6 +17,48 @@
 # limitations under the License.
 #
 
- package "help2man" do
+package "help2man" do
     action :install
-  end 
+end 
+
+package "libssl-dev" do
+    action :install
+end 
+
+package "apache2-prefork-dev" do
+    action :install
+end 
+
+package "libapr1-dev" do
+    action :install
+end 
+
+package "libaprutil1-dev" do
+    action :install
+end 
+
+package "libcurl4-openssl-dev" do
+    action :install
+end 
+
+package "rubygems" do
+    action :install
+end 
+
+
+gem_package "sinatra" do
+  action :install
+end
+
+gem_package "sinatra-cross_origin" do
+  action :install
+end
+
+gem_package "rest-client" do
+  action :install
+end
+
+
+
+ 
+ 
