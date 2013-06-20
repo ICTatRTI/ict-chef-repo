@@ -1,8 +1,6 @@
 #
-# Cookbook Name:: build-essential
-# Recipe:: default
-#
-# Copyright 2008-2009, Opscode, Inc.
+# Cookbook Name:: passenger_apache2
+# Recipe:: package
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,10 +13,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-begin
-  include_recipe "build-essential::#{node['platform_family']}"
-rescue Chef::Exceptions::RecipeNotFound
-  Chef::Log.warn "A build-essential recipe does not exist for the platform_family: #{node['platform_family']}"
+unless(node['passenger']['package']['name'])
+  raise 'Passenger package name must be defined!'
 end
+
+if(node['passenger']['apache_mpm'])
+  Chef::Log.warn "Attribute `node['passenger']['apache_mpm']` is not effective in package based installs"
+end
+
+package node['passenger']['package']['name'] do
+  version node['passenger']['package']['version']
+end
+
+apache_module 'passenger'
