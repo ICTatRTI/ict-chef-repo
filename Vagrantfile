@@ -28,11 +28,10 @@ Vagrant.configure("2") do |config|
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
-     chef.add_role "emis"
 
      # You may also specify custom JSON attributes:
      chef.json = { 
-      'name' => 'emis toolbox',
+      
      }
 
 
