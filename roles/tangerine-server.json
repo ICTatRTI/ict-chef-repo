@@ -16,7 +16,7 @@
     "recipe[ruby]",
     "recipe[rake]",
     "recipe[passenger_apache2]",
-    "recipe[tangerine_utility]"
+    "recipe[tangerine]"
   ],
   "env_run_lists": {
   }
