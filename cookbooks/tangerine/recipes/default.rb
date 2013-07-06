@@ -90,7 +90,7 @@ end
 
 ruby_block "Rename configuration file" do
   block do
-    ::File.rename("#{node.tangerine.wwwdir}/Config.sample.php","#{node.tangerine.wwwdir}/Config.php")
+    ::File.rename("#{node.tangerine.wwwdir}/robbert/Config.php.sample","#{node.tangerine.wwwdir}/robbert/Config.php")
   end
 end
  

@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'emis_toolbox' 
+     chef.node_name = 'tangerine' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
