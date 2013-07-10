@@ -7,4 +7,5 @@
 .vagrant
 .chef/*.pem
 .chef/knife.rb
+.chef/checksums
 .chef/encrypted_data_bag_secret
