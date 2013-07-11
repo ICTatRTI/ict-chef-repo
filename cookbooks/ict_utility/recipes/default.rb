@@ -23,4 +23,8 @@
 
   package "vim" do
     action :install
-  end   
+  end  
+
+  package "sendmail" do
+    action :install
+  end  
