@@ -65,6 +65,15 @@ Next Steps
 
 Read the README file in each of the subdirectories for more information about what goes in those directories.
 
+Quick Setup
+==========
+
+1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
+2. cd ict-chef-repo
+3. git checkout -b ushahidi origin/ushahidi
+4. vagrant up
+5. Go to http://localhost:8888
+
 
 Common workstation tasks
 =============
@@ -73,7 +82,7 @@ Configure Knife
 `knife configure`
 
 Bootstrap a tangerine node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N tangerine-moz -r role[base],role[tangerine] --sudo`
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N ushahidi -r role[base],role[ushahidi] --sudo`
 
 
 Other useful information

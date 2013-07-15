@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.define :base do |web_config|
+  config.vm.define :ushahidi do |web_config|
     
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
@@ -18,10 +18,11 @@ Vagrant.configure("2") do |config|
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'base' 
+     chef.node_name = 'ushahidi' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
+     chef.add_role "ushahidi"
 
    end
     
