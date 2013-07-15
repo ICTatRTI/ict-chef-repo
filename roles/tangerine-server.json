@@ -9,9 +9,14 @@
   "chef_type": "role",
   "run_list": [
     "recipe[ant]",
-     "recipe[apache2]",
+    "recipe[apache2]",
+    "recipe[apache2::mod_proxy]",
+    "recipe[apache2::mod_proxy_http]",
     "recipe[couchdb]",
-    "recipe[android-tools-adb]"
+    "recipe[ruby]",
+    "recipe[rake]",
+    "recipe[passenger_apache2]",
+    "recipe[tangerine]"
   ],
   "env_run_lists": {
   }

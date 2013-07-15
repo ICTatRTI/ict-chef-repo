@@ -1,0 +1,1 @@
+default['tangerine']['wwwdir'] = "/var/www"
