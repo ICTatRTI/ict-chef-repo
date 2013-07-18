@@ -22,6 +22,10 @@ require 'rubygems'
 require 'chef'
 require 'json'
 
+require "bundler/setup"
+
+task :default => [:list]
+
 # Load constants from rake config file.
 require File.join(File.dirname(__FILE__), 'config', 'rake')
 
@@ -63,3 +67,25 @@ task :bundle_cookbook, :cookbook do |t, args|
 
   FileUtils.rm_rf temp_dir
 end
+
+
+desc "Lists all the tasks."
+task :list do
+  puts "Tasks: \n- #{(Rake::Task.tasks).join("\n- ")}"
+end
+
+desc "Checks for required dependencies."
+task :check do
+  puts "Nothing to do yet..."
+end
+
+desc "Builds the package."
+task :build do
+  puts "Nothing to do yet..."
+end
+
+desc "Fires up the Vagrant box."
+task :start do
+  puts "Nothing to do yet..."
+end
+
