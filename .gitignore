@@ -1,5 +1,9 @@
 .rake_test_cache
 .DS_Store
+
+# Ignore bundler config
+/.bundle
+
 ###
 # Ignore Chef key files and secrets
 ###
