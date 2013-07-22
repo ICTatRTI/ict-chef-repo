@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.define :base do |web_config|
+  config.vm.define :ushahidi do |web_config|
     
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.

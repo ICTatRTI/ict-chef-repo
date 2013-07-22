@@ -1,0 +1,20 @@
+{
+  "name": "ushahidi",
+  "description": "Ushahidi Web Platform",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "mysql": {
+     "server_root_password": "idgpass",
+     "server_repl_password": "idgpass",
+     "server_debian_password": "idgpass"
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+     "recipe[ushahidi]"
+  ],
+  "env_run_lists": {
+  }
+}

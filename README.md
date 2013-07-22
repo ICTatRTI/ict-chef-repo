@@ -5,9 +5,12 @@
 Quick Setup
 ==========
 
+
 1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
 3. vagrant up
+4. Go to http://localhost:8888
+
 
 Common workstation tasks
 =============
@@ -16,7 +19,7 @@ Configure Knife
 `knife configure`
 
 Bootstrap a tangerine node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N tangerine-moz -r role[base] --sudo`
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base] --sudo`
 
 
 Other useful information
