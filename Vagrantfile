@@ -18,9 +18,7 @@ Vagrant.configure("2") do |config|
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.chef_server_url = ENV['KNIFE_CHEF_SERVER']
-     chef.validation_key_path = ENV['KNIFE_VALIDATION_KEY']
-     chef.validation_client_name = ENV['KNIFE_CLIENT_NAME']
+
      chef.node_name = 'base' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
