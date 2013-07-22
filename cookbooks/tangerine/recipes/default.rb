@@ -94,12 +94,12 @@ ruby_block "Rename configuration file" do
   end
 end
  
-cookbook_file "#{node['apache']['dir']}/sites-available/tangerine" do
-  source "tangerine"
-  mode 0755
+web_app "tangerine" do
+  template "tangerine.conf.erb"
+  docroot "#{node.tangerine.wwwdir}"
+  server_name server_fqdn
+  server_aliases node['fqdn']
 end
-
-apache_site "tangerine"
 
 service "apache2" do
   action :restart

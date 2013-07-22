@@ -1,0 +1,33 @@
+
+<VirtualHost *:80>
+    ServerName tree.tangerinecentral.org
+    DocumentRoot <%= @params[:docroot] %>/tree/public
+    <Directory <%= @params[:docroot] %>tree/public>
+        Allow from all
+        Options -MultiViews
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName robbert.tangerinecentral.org
+    DocumentRoot <%= @params[:docroot] %>/robbert
+    <Directory <%= @params[:docroot] %>/robbert>
+        Allow from all
+    </Directory>
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName databases.tangerinecentral.org
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot <%= @params[:docroot] %>/databases
+    AllowEncodedSlashes On
+    ProxyRequests Off
+    KeepAlive Off
+    <Proxy *>
+        Allow from all
+    </Proxy>
+    
+    ProxyPass / http://localhost:5984/ nocanon
+    ProxyPassReverse / http://localhost:5984/
+</VirtualHost>
+
