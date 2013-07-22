@@ -78,6 +78,7 @@ desc "Builds the package."
 task :build do
   Rake::Task[:knife_test].execute
   Rake::Task[:chefspec].execute
+  Rake::Task[:foodcritic].execute
 end
 
 desc "Fires up the Vagrant box."
@@ -94,4 +95,10 @@ desc "Runs chefspec on all the cookbooks."
 task :chefspec do
   sh "bundle exec rspec cookbooks"
 end
+
+desc "Runs foodcritic against all the cookbooks."
+task :foodcritic do
+  sh "bundle exec foodcritic cookbooks"
+end
+
 
