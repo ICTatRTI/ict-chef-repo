@@ -1,6 +1,7 @@
-Quick Setup
-==========
+[![Build Status](https://travis-ci.org/ICTatRTI/ict-chef-repo.png?branch=drupal)](https://travis-ci.org/ICTatRTI/ict-chef-repo)
 
+Quick setup
+==========
 
 1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
