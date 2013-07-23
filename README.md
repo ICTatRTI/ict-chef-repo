@@ -8,7 +8,7 @@ Quick Setup
 4. vagrant up
 5. Go to http://localhost:8888
 
-* Note: When using a drupal installation running on Acquia there are a few sublte differences in how the server is built.  These differences are captured in the drupal-acquia role.  Use this instead the drupal role when you are doing it this way.
+* Note: When using a drupal installation running on Acquia there are a few sublte differences in how the server is built.  These differences are captured in the drupal-acquia role.  Use this instead the drupal role when you are doing it this way. Note, uncomment the sync folder line in the Vagrant file for this as well.
 
 Common workstation tasks
 =============
