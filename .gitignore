@@ -4,8 +4,6 @@
 # Ignore Chef key files and secrets
 ###
 
+.bundle
 .vagrant
-.chef/*.pem
-.chef/knife.rb
-.chef/checksums
-.chef/encrypted_data_bag_secret
+.chef

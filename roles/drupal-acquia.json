@@ -1,0 +1,30 @@
+{
+  "name": "drupal-acquia",
+  "description": "Basic plafform for drupal. To be used where drupal is installed with git.",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "mysql": {
+     "server_root_password": "idgpass",
+     "server_repl_password": "idgpass",
+     "server_debian_password": "idgpass",
+     "port": "33066"
+    },
+    "drupal": {
+     "db": {
+        "database": "acquia_drupal",
+        "user": "drupaluser",
+        "password": ""
+      },
+      "dir" : "/var/www"
+   }
+  },
+  "chef_type": "role",
+  "run_list": [
+     "recipe[drupal::bare-bones]"
+
+  ],
+  "env_run_lists": {
+  }
+}
