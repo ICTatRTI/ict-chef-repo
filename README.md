@@ -8,6 +8,7 @@ Quick Setup
 4. vagrant up
 5. Go to http://localhost:8888
 
+* Note: When using a drupal installation running on Acquia there are a few sublte differences in how the server is built.  These differences are captured in the drupal-acquia role.  Use this instead the drupal role when you are doing it this way.
 
 Common workstation tasks
 =============
@@ -16,7 +17,7 @@ Configure Knife
 `knife configure`
 
 Bootstrap a tangerine node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base] --sudo`
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[drupal] --sudo`
 
 
 Other useful information
