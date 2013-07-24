@@ -1,4 +1,6 @@
 default['ushahidi']['dir'] = "/var/www"
-default['ushahidi']['db']['database'] = "ushahidi"
+default['ushahidi']['db']['schema'] = "ushahidi"
 default['ushahidi']['db']['user'] = "ushahidi"
 default['ushahidi']['db']['password'] = "eweshah1d1"
+default['ushahidi']['application']['version'] = "master"
+default['ushahidi']['application']['url'] = "localhost.localdomain"

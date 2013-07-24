@@ -1,11 +1,10 @@
 .rake_test_cache
 .DS_Store
+
 ###
 # Ignore Chef key files and secrets
 ###
 
 .vagrant
-.chef/*.pem
-.chef/knife.rb
-.chef/checksums
-.chef/encrypted_data_bag_secret
+.chef
+.bundle

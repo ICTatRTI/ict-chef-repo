@@ -9,6 +9,11 @@
      "server_root_password": "idgpass",
      "server_repl_password": "idgpass",
      "server_debian_password": "idgpass"
+    },
+    "ushahidi": {
+      "application": {
+        "version":"2.5"
+      }
     }
   },
   "chef_type": "role",
