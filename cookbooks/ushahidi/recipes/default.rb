@@ -171,6 +171,7 @@ end
 
 execute "Load in database customizations #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_customization.sql"
+  # not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 cookbook_file "/etc/mysql/db_enable_geometry.sql" do
@@ -181,6 +182,7 @@ end
 
 execute "Load in database geometery #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_enable_geometry.sql"
+ # not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 cookbook_file "/etc/mysql/db_views.sql" do
@@ -201,6 +203,7 @@ end
 
 execute "Load in database forms #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_forms.sql"
+  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 cookbook_file "/etc/mysql/db_views_custom_forms.sql" do
@@ -211,18 +214,39 @@ end
 
 execute "Load in database custom forms #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_views_custom_forms.sql"
+  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 
-#/usr/bin/mysqldump -u$DB_USER -p$DB_PASSWORD $DB_NAME incident form form_field form_field_option form_response > /tmp/$DB_NAME.sql &&
-#/bin/sed -i 's/ENGINE=MyISAM/ENGINE=InnoDB/g' /tmp/$DB_NAME.sql &&
-#/usr/bin/mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < /tmp/$DB_NAME.sql &&
-#/bin/rm -f /tmp/$DB_NAME.sql && success || failure
+execute "Dump incident form form_field form_field_option form_response to temp" do
+  command "/usr/bin/mysqldump -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} incident form form_field form_field_option form_response > /tmp/ushahidi-data.sql"
+end
 
-#echo -n $"Creando FKs... "
-#/usr/bin/mysql -u$DB_USER -p$DB_PASSWORD $DB_NAME < $DB_FKS && success || failure
+execute "sed --in-place \"s/ENGINE=MyISAM/ENGINE=InnoDB/g\" /tmp/ushahidi-data.sql" do
+  cwd "#{node.ushahidi.dir}/Ushahidi_Web"
+  action :run
+end
 
+execute "Load in updates to Engine" do
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /tmp/ushahidi-data.sql"
+  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+end
 
+execute "rm -f ushahidi-data.sql" do
+  cwd "/tmp"
+  action :run
+end
+
+cookbook_file "/etc/mysql/db_fks.sql" do
+  source "db_fks.sql"
+  owner "root"
+  mode "644"
+end
+
+execute "Update the foreign keys" do
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_fks.sql"
+  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+end
 
 directory "#{node.ushahidi.dir}/Ushahidi_Web/application/logs" do
   group node['apache']['user']
@@ -250,7 +274,7 @@ file "#{node.ushahidi.dir}/Ushahidi_Web/.htaccess" do
 end
 
 web_app "ushahidi" do
-  template "ushahidi.conf.erb"
+  template "ushahidi.erb"
   docroot "#{node.ushahidi.dir}/Ushahidi_Web"
   server_name server_fqdn
   server_aliases node['fqdn']
