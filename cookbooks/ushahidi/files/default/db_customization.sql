@@ -115,7 +115,7 @@ INSERT INTO `permissions_roles` VALUES
 
 # Users
 INSERT INTO `users` (`name`,`email`,`username`,`password`,`notify`,`updated`,`color`,`code`,`confirmed`,`public_profile`,`approved`,`needinfo`) VALUES 
- ('Administrador RTI','pdestefanis@rti.org','rtiadmin','0988eb336a4676edfbe6c0f5ea88a63d98c229131346e2eea0',0,NOW(),'FF0000',NULL,1,0,1,0),
+ ('Administrador RTI','apreston@rti.org','rtiadmin','0988eb336a4676edfbe6c0f5ea88a63d98c229131346e2eea0',0,NOW(),'FF0000',NULL,1,0,1,0),
  ('Administrador PNC','pncadmin@observatorio.gob.sv','pncadmin','4f9e9f264b9b92987c697cac0314e43ae40e45b534accb4662',0,NOW(),'FF0000',NULL,1,0,1,0),
  ('Administrador CAM','camadmin@observatorio.gob.sv','camadmin','ded110689e1ddcc20597e73cee1547136f2bd87d58f7f4e07a',0,NOW(),'FF0000',NULL,1,0,1,0),
  ('Observatorio','mapas@observatorio.gob.sv','observatorio','9c227fd0bac2f5e6c49b5c0111bc4b65e1bbeb1c4377c23aef',0,NOW(),'FF0000',NULL,1,0,1,0),

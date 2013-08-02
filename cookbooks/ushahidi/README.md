@@ -1,21 +1,19 @@
 ushahidi Cookbook
 =================
-TODO: Enter the cookbook description here.
+This cookbook makes a brand spaking new instance of Ushahidi web application.
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
 e.g.
 #### packages
-- `toaster` - ushahidi needs toaster to brown your bagel.
+- `mysql` - ushahidi needs a database.
+- `apache2` - ushahidi needs a web server.
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
+
 
 e.g.
 #### ushahidi::default
@@ -27,17 +25,47 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['ushahidi']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['ushahidi']['dir']</tt></td>
+    <td>String</td>
+    <td>Where on the server Ushahidi will be installed</td>
+    <td><tt>/var/www</tt></td>
+  </tr>
+    <tr>
+    <td><tt>['ushahidi']['db']['schema']</tt></td>
+    <td>String</td>
+    <td>The Schema name.</td>
+    <td><tt>ushahidi</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ushahidi']['db']['user']</tt></td>
+    <td>String</td>
+    <td>The database username.</td>
+    <td><tt>ushahidi</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ushahidi']['db']['password']</tt></td>
+    <td>String</td>
+    <td>The database user password.</td>
+    <td><tt>eweshah1d1</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ushahidi']['application']['version']</tt></td>
+    <td>String</td>
+    <td>This is the Ushahidi tag or branch in GitHub that will be installed.</td>
+    <td><tt>master</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['ushahidi']['application']['url']</tt></td>
+    <td>String</td>
+    <td>This is used in the apache configuration.  This is the DNS name.</td>
+    <td><tt>localhost.localdomain</tt></td>
   </tr>
 </table>
 
 Usage
 -----
 #### ushahidi::default
-TODO: Write usage instructions for each cookbook.
+A plain old unconfigured instance of ushahidi, this is the default one.
 
 e.g.
 Just include `ushahidi` in your node's `run_list`:
@@ -47,6 +75,21 @@ Just include `ushahidi` in your node's `run_list`:
   "name":"my_node",
   "run_list": [
     "recipe[ushahidi]"
+  ]
+}
+```
+
+#### ushahidi::si
+An instance that has been cusomized for the SI project.
+
+e.g.
+Just include `ushahidi` in your node's `run_list`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[ushahidi::si]"
   ]
 }
 ```
@@ -65,4 +108,4 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Adam Preston (apreston@rti.org)

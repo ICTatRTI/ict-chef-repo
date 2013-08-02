@@ -8,10 +8,8 @@
     Allow from all
   </Directory>
 
+  Redirect permanent / https://<%= @node[:ushahidi][:application][:url] %>/
   ErrorLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-error.log
   CustomLog <%= @node[:apache][:log_dir] %>/<%= @params[:name] %>-access.log combined
 
-  <IfModule mod_rewrite.c>
-    RewriteEngine On
-  </IfModule>
 </VirtualHost>
