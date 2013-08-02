@@ -280,6 +280,24 @@ web_app "ushahidi" do
   server_aliases node['fqdn']
 end
 
+cookbook_file "/etc/mysql/db_customization.sql" do
+  source "db_customization.sql"
+  owner "root"
+  mode "644"
+end
+
+cookbook_file "/etc/apache2/ssl/apache.crt" do
+  source "apache.crt"
+  owner "root"
+  mode "644"
+end
+
+cookbook_file "/etc/apache2/ssl/apache.key" do
+  source "apache.key"
+  owner "root"
+  mode "644"
+end
+
 web_app "ushahidi-ssl" do
   template "ushahidi-ssl.erb"
   docroot "#{node.ushahidi.dir}/Ushahidi_Web"
