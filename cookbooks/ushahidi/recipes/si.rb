@@ -56,6 +56,7 @@ end
 execute "git clone https://github.com/ICTatRTI/Ushahidi_Web.git" do
   cwd node['ushahidi']['dir']
   action :run
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web")}
 end
 
 execute "git checkout -f #{node['ushahidi']['application']['version']}" do
@@ -63,25 +64,28 @@ execute "git checkout -f #{node['ushahidi']['application']['version']}" do
   action :run
 end
 
-execute "rm -rf *" do
-  cwd "#{node.ushahidi.dir}/Ushahidi_Web/application/i18n"
+execute "rm -rf i18n" do
+  cwd "#{node.ushahidi.dir}/Ushahidi_Web/application"
   action :run
 end
 
 execute "git clone git://github.com/ushahidi/Ushahidi-Localizations.git i18n" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/application"
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n")}
   action :run
 end
 
 
 execute "git clone https://github.com/ICTatRTI/linkreports.git linkreports" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/plugins"
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/plugins/linkreports")}
   action :run
 end
 
 
 execute "git clone https://github.com/ICTatRTI/SI2WebTheme.git SI2" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/themes"
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/themes/SI2")}
   action :run
 end
 
@@ -137,9 +141,6 @@ execute "sed  --in-place \"s/.*'domain'.*/\\$config['secure'] = \\\"TRUE\\\";/g\
   action :nothing
 end
 
-execute "initialize #{node['ushahidi']['db']['schema']} database" do
-  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < #{node['ushahidi']['dir']}/Ushahidi_Web/sql/ushahidi.sql"
-end
 
 execute "sed --in-place \"s/password/#{node['ushahidi']['db']['password']}/g\" application/config/database.php" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web"
@@ -156,6 +157,11 @@ execute "sed --in-place \"s/db/#{node['ushahidi']['db']['schema']}/g\" applicati
   action :run
 end
 
+execute "initialize database" do
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < #{node['ushahidi']['dir']}/Ushahidi_Web/sql/ushahidi.sql"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} #{node['ushahidi']['db']['schema']} --execute=\"show tables\" | grep ."
+ end
+
 execute "rm -rf installer" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web"
   action :run
@@ -171,7 +177,8 @@ end
 
 execute "Load in database customizations #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_customization.sql"
-  # not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names #{node['ushahidi']['db']['schema']} --execute=\"select * from settings where id = 4\" | grep observatorio.amss@gmail.com"
+  action :run
 end
 
 cookbook_file "/etc/mysql/db_enable_geometry.sql" do
@@ -182,7 +189,7 @@ end
 
 execute "Load in database geometery #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_enable_geometry.sql"
- # not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names #{node['ushahidi']['db']['schema']} --execute=\"describe location\" | grep location_point"
 end
 
 cookbook_file "/etc/mysql/db_views.sql" do
@@ -203,7 +210,7 @@ end
 
 execute "Load in database forms #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_forms.sql"
-  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']}  #{node['ushahidi']['db']['schema']} --execute=\"select form_title from form where id = 102\" | grep VEHICULOS"
 end
 
 cookbook_file "/etc/mysql/db_views_custom_forms.sql" do
@@ -214,7 +221,6 @@ end
 
 execute "Load in database custom forms #{node['ushahidi']['db']['schema']} " do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_views_custom_forms.sql"
-  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 
@@ -229,7 +235,6 @@ end
 
 execute "Load in updates to Engine" do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /tmp/ushahidi-data.sql"
-  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
 end
 
 execute "rm -f ushahidi-data.sql" do
@@ -245,7 +250,7 @@ end
 
 execute "Update the foreign keys" do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/db_fks.sql"
-  #not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']}  #{node['ushahidi']['db']['schema']} --execute=\"SHOW CREATE TABLE form_field\" | grep FK_form_id"
 end
 
 directory "#{node.ushahidi.dir}/Ushahidi_Web/application/logs" do
@@ -276,8 +281,6 @@ end
 web_app "ushahidi" do
   template "ushahidi.erb"
   docroot "#{node.ushahidi.dir}/Ushahidi_Web"
-  server_name server_fqdn
-  server_aliases node['fqdn']
 end
 
 cookbook_file "/etc/mysql/db_customization.sql" do
@@ -301,8 +304,6 @@ end
 web_app "ushahidi-ssl" do
   template "ushahidi-ssl.erb"
   docroot "#{node.ushahidi.dir}/Ushahidi_Web"
-  server_name server_fqdn
-  server_aliases node['fqdn']
 end
 
 execute "disable-default-site" do

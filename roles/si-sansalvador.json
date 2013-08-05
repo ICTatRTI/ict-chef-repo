@@ -1,0 +1,26 @@
+{
+  "name": "si-sansalvador",
+  "description": "Ushahidi Web Platform",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "mysql": {
+     "server_root_password": "idgpass",
+     "server_repl_password": "idgpass",
+     "server_debian_password": "idgpass"
+    },
+    "ushahidi": {
+      "application": {
+        "version":"seguridad-inalambrica",
+        "url": "sansalvador.observatorio.gob.sv"
+      }
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+     "recipe[ushahidi::si]"
+  ],
+  "env_run_lists": {
+  }
+}

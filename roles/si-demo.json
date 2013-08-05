@@ -1,5 +1,5 @@
 {
-  "name": "ushahidi",
+  "name": "si-demo",
   "description": "Ushahidi Web Platform",
   "json_class": "Chef::Role",
   "default_attributes": {
@@ -12,7 +12,8 @@
     },
     "ushahidi": {
       "application": {
-        "version":"seguridad-inalambrica"
+        "version":"seguridad-inalambrica",
+        "url": "demo.observatorio.gob.sv"
       }
     }
   },

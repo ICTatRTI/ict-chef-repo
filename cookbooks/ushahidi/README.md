@@ -6,7 +6,6 @@ This cookbook makes a brand spaking new instance of Ushahidi web application.
 Requirements
 ------------
 
-e.g.
 #### packages
 - `mysql` - ushahidi needs a database.
 - `apache2` - ushahidi needs a web server.
