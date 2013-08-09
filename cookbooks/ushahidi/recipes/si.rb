@@ -66,12 +66,13 @@ end
 
 execute "rm -rf i18n" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/application"
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n")}
   action :run
 end
 
 execute "git clone git://github.com/ushahidi/Ushahidi-Localizations.git i18n" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/application"
-  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n")}
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n/README")}
   action :run
 end
 
@@ -293,12 +294,21 @@ cookbook_file "/etc/apache2/ssl/apache.crt" do
   source "apache.crt"
   owner "root"
   mode "644"
+  action :create_if_missing
 end
 
 cookbook_file "/etc/apache2/ssl/apache.key" do
   source "apache.key"
   owner "root"
   mode "644"
+  action :create_if_missing
+end
+
+cookbook_file "/etc/apache2/ssl/intermediate.crt" do
+  source "intermediate.crt"
+  owner "root"
+  mode "644"
+  action :create_if_missing
 end
 
 web_app "ushahidi-ssl" do
@@ -311,4 +321,6 @@ execute "disable-default-site" do
    notifies :reload, resources(:service => "apache2"), :delayed
 end
 
-
+execute "echo \"ServerName localhost\" | sudo tee /etc/apache2/conf.d/fqdn" do
+  action :run
+end
