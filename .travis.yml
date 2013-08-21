@@ -7,6 +7,5 @@ gemfile:
   - Gemfile
 branches:
   only:
-    - master
-    - tangerine
+    - drupal
 
