@@ -66,7 +66,7 @@ end
 
 execute "rm -rf i18n" do
   cwd "#{node.ushahidi.dir}/Ushahidi_Web/application"
-  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n")}
+  not_if { ::File.exists?("#{node.ushahidi.dir}/Ushahidi_Web/application/i18n/README")}
   action :run
 end
 

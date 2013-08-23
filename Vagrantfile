@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
-     chef.add_role "ushahidi"
+     chef.add_role "si-demo"
 
    end
     
