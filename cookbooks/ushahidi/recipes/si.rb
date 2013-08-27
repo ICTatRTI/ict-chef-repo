@@ -90,6 +90,33 @@ execute "git clone https://github.com/ICTatRTI/SI2WebTheme.git SI2" do
   action :run
 end
 
+execute "create geodata database" do
+  command "/usr/bin/mysqladmin -u root -p#{node['mysql']['server_root_password']} create geodata"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like 'geodata'\" | grep geodata"
+end
+
+cookbook_file "/etc/mysql/giswithin.sql" do
+  source "giswithin.sql"
+  owner "root"
+  mode "644"
+end
+
+execute "initialize add GISWithin Function" do
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/giswithin.sql "
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} #{node['ushahidi']['db']['schema']} --execute=\"SHOW FUNCTION STATUS\" | grep GISWithin"
+ end
+
+
+cookbook_file "/etc/mysql/geodata.sql" do
+  source "geodata.sql"
+  owner "root"
+  mode "644"
+end
+
+execute "initialize geodata database" do
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/geodata.sql"
+  not_if "mysql -u root -p#{node['mysql']['server_root_password']} geodata --execute=\"show tables\" | grep ."
+ end
 
 ## Configure
 ruby_block "Rename configuration file" do
