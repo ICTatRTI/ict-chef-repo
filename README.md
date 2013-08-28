@@ -4,7 +4,7 @@
 Quick setup
 ==========
 
-1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
+1. git clone https://github.com/ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
 3 git checkout -b ushahidi origin/ushahidi
 4. vagrant up
