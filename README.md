@@ -3,7 +3,7 @@
 Quick setup
 ==========
 
-1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
+1. git clone https://github.com/ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
 3. git checkout -b drupal origin/drupal
 4. vagrant up
@@ -17,8 +17,8 @@ Common workstation tasks
 Configure Knife
 `knife configure`
 
-Bootstrap a tangerine node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[drupal] --sudo`
+Bootstrap a plain old node
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base] --sudo`
 
 
 Other useful information
