@@ -5,7 +5,7 @@ Quick Setup
 ==========
 
 
-1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
+1. git clone https://github.com/ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
 3. git checkout -b tangerine origin/tangerine
 4. vagrant up
