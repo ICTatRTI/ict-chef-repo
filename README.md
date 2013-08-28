@@ -18,7 +18,7 @@ Configure Knife
 `knife configure`
 
 Bootstrap a plain old node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base] --sudo`
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[drupal] --sudo`
 
 
 Other useful information
