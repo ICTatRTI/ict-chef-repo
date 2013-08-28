@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
 
     web_config.vm.box = "opscode-ubuntu-1204"
     web_config.vm.network :forwarded_port, guest: 80, host: 8888
+    web_config.vm.network :forwarded_port, guest: 443, host: 8889
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|

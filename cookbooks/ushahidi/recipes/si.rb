@@ -114,7 +114,7 @@ cookbook_file "/etc/mysql/geodata.sql" do
 end
 
 execute "initialize geodata database" do
-  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  #{node.ushahidi.db.schema} < /etc/mysql/geodata.sql"
+  command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  geodata < /etc/mysql/geodata.sql"
   not_if "mysql -u root -p#{node['mysql']['server_root_password']} geodata --execute=\"show tables\" | grep ."
  end
 

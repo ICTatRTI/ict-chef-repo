@@ -17,3 +17,10 @@ The [Github Flavored Markdown page](http://github.github.com/github-flavored-mar
 
 - - -
 Allow for copied in certs (we don't want these in the repository)
+
+## 0.1.8
+
+* Added geodata
+
+- - -
+Create a geodata database and give ushahidi access to it.
