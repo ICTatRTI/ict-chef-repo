@@ -6,9 +6,9 @@ Quick Setup
 ==========
 
 
-1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
+1. git clone https://github.com/ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
-3. git checkout -b drupal origin/emis-toolbox
+3. git checkout -b emis-toolbox origin/emis-toolbox
 4. vagrant up
 5. Go to http://localhost:8888
 
