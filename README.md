@@ -4,14 +4,16 @@
 Quick setup
 ==========
 
-1. git clone https://github.com/ICTatRTI/ict-chef-repo.git
+1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
 3 git checkout -b ushahidi origin/ushahidi
 4. vagrant up
 5. Go to http://localhost:8888
 
+* Note: using the default role will configure the SI2 demo server complete with the redirect in the apache2 configuration file for the SSL version of the demo site, or https://demo.observatorio.gov.sv.  To avoid this situation just comment this line out in /etc/apache2/sites-enabled/ushahidi.conf.  When you do this the server will be available here: https://localhost:8889.
 
-Common workstation tasks
+
+Common workstation tasks with using Chef Server
 =============
 
 Configure Knife
@@ -21,10 +23,10 @@ Bootstrap a ushahidi node
 `knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[ushahidi] --sudo`
 
 
-Other useful information
+
+Sample knife.rb configuration
 =============
 
-Sample knife.rb
 ```
 current_dir = File.dirname(__FILE__)
 log_level :debug
