@@ -23,6 +23,14 @@ Bootstrap a ushahidi node
 `knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[ushahidi] --sudo`
 
 
+Running on Amazon Web Services
+=============
+ 1. Install the Vagrant [https://github.com/mitchellh/vagrant-aws](AWS Plugin)
+ 2. Follow the Quick Start Guide from the Vagrant AWS Plugin
+ 3. Log into your AWS Console and verify your server has been created.
+
+ * notes: If you are having problems connecting to the instance, check your secruity group configuration.
+
 
 Sample knife.rb configuration
 =============
