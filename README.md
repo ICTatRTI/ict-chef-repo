@@ -13,15 +13,6 @@ Quick setup
 * Note: using the default role will configure the SI2 demo server complete with the redirect in the apache2 configuration file for the SSL version of the demo site, or https://demo.observatorio.gov.sv.  To avoid this situation just comment this line out in /etc/apache2/sites-enabled/ushahidi.conf.  When you do this the server will be available here: https://localhost:8889.
 
 
-Common workstation tasks with using Chef Server
-=============
-
-Configure Knife
-`knife configure`
-
-Bootstrap a ushahidi node
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[ushahidi] --sudo`
-
 
 Running on Amazon Web Services
 =============
@@ -32,8 +23,15 @@ Running on Amazon Web Services
  * notes: If you are having problems connecting to the instance, check your secruity group configuration.
 
 
-Sample knife.rb configuration
+Using Chef Server
 =============
+Another way of using these scripts is with a Chef server.  To use Chef Server here are a few things you will need in order to get started. First, you'll need to configure your local client workstation.  Conveniently, this can be done with only one command.
+
+`knife configure`
+
+
+# Sample knife.rb configuration
+For a reference, here is what a working knife.rb configuration file looks like:
 
 ```
 current_dir = File.dirname(__FILE__)
@@ -51,3 +49,11 @@ cookbook_copyright "Research Triangle Institute."
 cookbook_license "apachev2"
 cookbook_email "apreston@rti.org"
 ``` 
+
+
+# Bootstrap a ushahidi node
+Once you have everything configured, you can bootstrap a node by doing this:
+
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[ushahidi] --sudo`
+
+
