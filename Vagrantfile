@@ -1,4 +1,5 @@
 
+
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -12,18 +13,32 @@ Vagrant.configure("2") do |config|
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
     web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
-
+    
+    # used by the aws provisioner
+    web_config.omnibus.chef_version = :latest
+    
     web_config.vm.box = "opscode-ubuntu-1204"
     web_config.vm.network :forwarded_port, guest: 8080, host: 8888
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'tangerine' 
+     chef.node_name = 'tangerine'
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
      chef.add_role "tangerine-server"
    end
+
+    # uncomment all of this stuff to use the AWS plugin
+     # web_config.vm.provider :aws do |aws, override|
+       # aws.access_key_id = "your.key"
+       # aws.secret_access_key = "your.secret.key"
+       # aws.keypair_name = "Your Key Pair Name"
+       # aws.ami = "ami-7747d01e"
+       # aws.security_groups = ["Basic Access"]
+       # override.ssh.username = "ubuntu"
+       # override.ssh.private_key_path = "/path/to/private/key"
+     # end
     
   end
   
