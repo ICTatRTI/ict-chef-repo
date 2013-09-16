@@ -21,7 +21,7 @@ The easist way to get up and running is to use Chef Solo, which is basically run
  2. Install the Vagrant [Omnibus Plugin](https://github.com/schisamo/vagrant-omnibus) * If your AMI doesn't have Chef installed already
  3. Finish configuring the Vagrantfile specifically the AWS key, secret key, private key path, security groups
  4. Run this: vagrant up --provider=aws
- 5. Log into your AWS Console and verify your server has been created.
+ 5. Log into your AWS Console and verify your server has been created and provisiioned.
 
  * note: If you are having problems connecting to the instance, check your security group configuration. 
 
