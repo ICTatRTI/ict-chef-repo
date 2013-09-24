@@ -31,18 +31,13 @@ package "vim" do
   action :install
 end  
 
-  group "www-data" do
-  	action :modify
-  	members "maintenance"
-  	append true
-   end
 
- user "ict-user" do
+ user "ict-admin" do
   	supports :manage_home => true
-  	comment "ICT User"
+  	comment "ICT Admin"
   	uid 1234
   	gid "users"
-  	home "/home/ict-user"
+  	home "/home/ict-admin"
   	shell "/bin/bash"
 end
 

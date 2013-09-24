@@ -6,6 +6,10 @@ This file is used to list changes made in each version of ict_utility.
 
 * Initial release of ict_utility
 
+## 0.2.0:
+
+* Added the web recipie
+
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
 

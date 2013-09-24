@@ -18,7 +18,7 @@ None
 Usage
 -----
 #### ict_utility::default
-TODO: Write usage instructions for each cookbook.
+
 
 e.g.
 Just include `ict_utility` in your node's `run_list`:
@@ -28,6 +28,22 @@ Just include `ict_utility` in your node's `run_list`:
   "name":"my_node",
   "run_list": [
     "recipe[ict_utility]"
+  ]
+}
+```
+
+#### ict_utility::web
+
+This is the base with a LAMP stack
+
+e.g.
+Just include `ict_utility::web` in your node's `run_list`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[ict_utility::web]"
   ]
 }
 ```
