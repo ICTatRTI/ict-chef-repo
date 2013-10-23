@@ -1,0 +1,6 @@
+Vagrant::Config.run do |config|
+  # Forward apache
+  config.vm.forward_port 8080, 8888
+  config.vm.forward_port  3306, 3333
+end
+
