@@ -38,6 +38,6 @@ default['couch_db']['config']['couchdb']['batch_save_size'] = 1000
 default['couch_db']['config']['couchdb']['batch_save_interval'] = 1000  # In ms (1 second)
 
 default['couch_db']['config']['httpd']['port'] = 5984
-default['couch_db']['config']['httpd']['bind_address'] = "127.0.0.1"
+default['couch_db']['config']['httpd']['bind_address'] = "0.0.0.0"
 
 default['couch_db']['config']['log']['level'] = "info"

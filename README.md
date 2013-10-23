@@ -13,7 +13,12 @@ The easist way to get up and running is to use Chef Solo, which is basically run
 2. cd ict-chef-repo
 3 git checkout -b tangerine origin/tangerine
 4. vagrant up
-5. Go to http://localhost:8888
+5. You must restart the VM for the port forwarding to work:
+    1. vagrant ssh
+    2. sudo shutdown -r now
+5. Apps are available at the following URL's:
+    * CouchDB Futon: http://localhost:5984/_utils/index.html
+    * http://localhost:8888
 
 ### Running on Amazon Web Services
 
