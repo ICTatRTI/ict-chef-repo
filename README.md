@@ -10,7 +10,7 @@ The easist way to get up and running is to use Chef Solo, which is basically run
 
 1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
-3 git checkout -b emis-toolbox origin/emis-toolbox
+3. git checkout -b emis-toolbox origin/emis-toolbox
 4. vagrant up
 5. Tthe EMIS Toolbox is available here: [http://localhost:8888/emistoolbox](http://localhost:8888/emistoolbox)
 
@@ -58,8 +58,8 @@ cookbook_email "apreston@rti.org"
 ``` 
 
 
-## Bootstrap a tangerine node
+## Bootstrap an EMIS Toolbox node
 Once you have everything configured, you can bootstrap a node by doing this:
 
-`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[tangerine] --sudo`
+`knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[emis] --sudo`
 
