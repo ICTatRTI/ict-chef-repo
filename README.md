@@ -12,7 +12,7 @@ The easist way to get up and running is to use Chef Solo, which is basically run
 2. cd ict-chef-repo
 3 git checkout -b emis-toolbox origin/emis-toolbox
 4. vagrant up
-5. Tthe EMIS Toolbox is available here: http://localhost:8888/emistoolbox
+5. Tthe EMIS Toolbox is available here: [http://localhost:8888/emistoolbox](http://localhost:8888/emistoolbox)
 
 ### Running on Amazon Web Services
 
@@ -20,9 +20,13 @@ The easist way to get up and running is to use Chef Solo, which is basically run
  2. Install the Vagrant [Omnibus Plugin](https://github.com/schisamo/vagrant-omnibus) * If your AMI doesn't have Chef installed already
  3. Finish configuring the Vagrantfile specifically the AWS key, secret key, private key path, security groups
  4. Run this: vagrant up --provider=aws
- 5. Log into your AWS Console and verify your server has been created and provisiioned.
+ 5. Log into your AWS Console and verify your server has been created and provisioned.
 
- * note: If you are having problems connecting to the instance, check your security group configuration. 
+ * note: If you are having problems connecting to the instance, check your security group configuration. Also note that per the instructions in the AWS Plugin documentation, replace the config.box with:
+ 
+ ```
+ web_config.vm.box = "dummy"
+ ```
 
 
 
