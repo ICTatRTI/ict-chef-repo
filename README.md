@@ -12,9 +12,7 @@ The easist way to get up and running is to use Chef Solo, which is basically run
 2. cd ict-chef-repo
 3 git checkout -b emis-toolbox origin/emis-toolbox
 4. vagrant up
-5. Apps are available at the following URL's:
-    * Mysql: http://localhost:5984/_utils/index.html
-    * http://localhost:8888
+5. Tthe EMIS Toolbox is available here: http://localhost:8888/emistoolbox
 
 ### Running on Amazon Web Services
 
