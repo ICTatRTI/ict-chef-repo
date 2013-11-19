@@ -1,0 +1,4 @@
+site :opscode
+
+cookbook 'mysql'
+
