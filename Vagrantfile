@@ -18,13 +18,22 @@ Vagrant.configure("2") do |config|
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
-
      chef.node_name = 'base' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
-
    end
+
+    # uncomment all of this stuff to use the AWS plugin
+     # web_config.vm.provider :aws do |aws, override|
+       # aws.access_key_id = "your.key"
+       # aws.secret_access_key = "your.secret.key"
+       # aws.keypair_name = "Your Key Pair Name"
+       # aws.ami = "ami-7747d01e"
+       # aws.security_groups = ["Basic Access"]
+       # override.ssh.username = "ubuntu"
+       # override.ssh.private_key_path = "/path/to/private/key"
+     # end
     
   end
   
