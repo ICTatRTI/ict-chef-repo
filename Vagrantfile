@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
     
     # The url from where the 'config.vm.box' box will be fetched if it
     # doesn't already exist on the user's system.
-    #web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
+    web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
 
     web_config.vm.box = "opscode-ubuntu-1204"
     #web_config.vm.box = "digital_ocean"
