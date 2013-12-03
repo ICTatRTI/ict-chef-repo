@@ -1,8 +1,11 @@
 
 [![Build Status](https://travis-ci.org/ICTatRTI/ict-chef-repo.png?branch=ushahidi)](https://travis-ci.org/ICTatRTI/ict-chef-repo)
 
-Quick setup
-==========
+# Using Chef Solo
+The easist way to get up and running is to use Chef Solo, which is basically running Chef client in a special mode that doesn't require access to a running Chef server.  All of these instructions are running from your local workstation.
+
+### Running a local Virtual Machine
+
 
 1. git clone git@github.com:ICTatRTI/ict-chef-repo.git
 2. cd ict-chef-repo
@@ -14,8 +17,7 @@ Quick setup
 
 
 
-Running on Amazon Web Services
-=============
+###  Running on Amazon Web Services 
  1. Install the Vagrant [https://github.com/mitchellh/vagrant-aws](AWS Plugin)
  2. Follow the Quick Start Guide from the Vagrant AWS Plugin
  3. Log into your AWS Console and verify your server has been created.
@@ -23,14 +25,28 @@ Running on Amazon Web Services
  * notes: If you are having problems connecting to the instance, check your secruity group configuration.
 
 
-Using Chef Server
-=============
+
+### Running on Digital Ocean 
+
+ 1. Install the Digital Ocean Plugin 
+ ```vagrant plugin install vagrant-digitalocean```
+ 2. Add the Digtial Ocean base box
+ ```vagrant box add digital_ocean https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box```
+ 3. If your AMI doesn't have Chef installed already, install the Vagrant [Omnibus Plugin](https://github.com/schisamo/vagrant-omnibus) 
+ 4. Finish configuring the Vagrantfile specifically the AWS key, secret key, private key path, security groups (see Vagrantfile for more sample configuration)
+ 5. Bring up the server
+ ```vagrant up --provider=digital_ocean```
+ 5. Log into your Digital Ocean account and verify your server has been created and provisioned.
+
+
+
+#  Using Chef Server 
 Another way of using these scripts is with a Chef server.  To use Chef Server here are a few things you will need in order to get started. First, you'll need to configure your local client workstation.  Conveniently, this can be done with only one command.
 
 `knife configure`
 
 
-# Sample knife.rb configuration
+### Sample knife.rb configuration
 For a reference, here is what a working knife.rb configuration file looks like:
 
 ```
@@ -51,7 +67,7 @@ cookbook_email "apreston@rti.org"
 ``` 
 
 
-# Bootstrap a ushahidi node
+### Bootstrap a ushahidi node
 Once you have everything configured, you can bootstrap a node by doing this:
 
 `knife bootstrap -i ~/keys/ictadmin_rsa 192.241.212.68 -N test-node -r role[base],role[ushahidi] --sudo`
