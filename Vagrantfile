@@ -7,7 +7,8 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.define "ushahidi" do |web_config|
+
+config.vm.define "ushahidi" do |web_config|
     
     web_config.vm.box = "digital_ocean"
     web_config.omnibus.chef_version = :latest
@@ -19,7 +20,7 @@ Vagrant.configure("2") do |config|
      chef.add_role "base"
      chef.add_role "si-demo"
    end
-  end
+end
 
 
 config.vm.define "ushahidi-si-ciudaddelgado" do |web_config|
@@ -34,7 +35,7 @@ config.vm.define "ushahidi-si-ciudaddelgado" do |web_config|
      chef.add_role "base"
      chef.add_role "si-demo"
    end
-  end
+end
 
 config.vm.define "ushahidi-si-ayutuxtepeque" do |web_config|
     
@@ -48,7 +49,7 @@ config.vm.define "ushahidi-si-ayutuxtepeque" do |web_config|
      chef.add_role "base"
      chef.add_role "si-ayutuxtepeque"
    end
-  end
+end
 
    # Set the environment variables like this:
    #   export DIGITAL_OCEAN_CLIENT_ID=abcdefghijklmnop
