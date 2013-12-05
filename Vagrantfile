@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
 
-config.vm.define "ushahidi" do |web_config|
+config.vm.define "ushahidi-si-demo" do |web_config|
     
     web_config.vm.box = "digital_ocean"
     web_config.omnibus.chef_version = :latest
@@ -22,6 +22,75 @@ config.vm.define "ushahidi" do |web_config|
    end
 end
 
+config.vm.define "ushahidi-si-antigou" do |web_config|
+    
+    web_config.vm.box = "digital_ocean"
+    web_config.omnibus.chef_version = :latest
+
+    web_config.vm.provision :chef_solo do |chef|
+     chef.node_name = 'antigou' 
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.add_role "base"
+     chef.add_role "si-antigou"
+   end
+end
+
+config.vm.define "ushahidi-si-sanmartin" do |web_config|
+    
+    web_config.vm.box = "digital_ocean"
+    web_config.omnibus.chef_version = :latest
+
+    web_config.vm.provision :chef_solo do |chef|
+     chef.node_name = 'sanmartin' 
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.add_role "base"
+     chef.add_role "si-sanmartin"
+   end
+end
+
+config.vm.define "ushahidi-si-sansalvador" do |web_config|
+    
+    web_config.vm.box = "digital_ocean"
+    web_config.omnibus.chef_version = :latest
+
+    web_config.vm.provision :chef_solo do |chef|
+     chef.node_name = 'sansalvador' 
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.add_role "base"
+     chef.add_role "si-sansalvador"
+   end
+end
+
+config.vm.define "ushahidi-si-santatecla" do |web_config|
+    
+    web_config.vm.box = "digital_ocean"
+    web_config.omnibus.chef_version = :latest
+
+    web_config.vm.provision :chef_solo do |chef|
+     chef.node_name = 'santatecla' 
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.add_role "base"
+     chef.add_role "si-santatecla"
+   end
+end
+
+config.vm.define "ushahidi-si-apopa" do |web_config|
+    
+    web_config.vm.box = "digital_ocean"
+    web_config.omnibus.chef_version = :latest
+
+    web_config.vm.provision :chef_solo do |chef|
+     chef.node_name = 'ciudaddelgado' 
+     chef.cookbooks_path = "./cookbooks"
+     chef.roles_path = "./roles"
+     chef.add_role "base"
+     chef.add_role "si-ciudaddelgado"
+   end
+end
 
 config.vm.define "ushahidi-si-ciudaddelgado" do |web_config|
     
@@ -29,11 +98,11 @@ config.vm.define "ushahidi-si-ciudaddelgado" do |web_config|
     web_config.omnibus.chef_version = :latest
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'ushahidi-si-ciudaddelgado' 
+     chef.node_name = 'ciudaddelgado' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
-     chef.add_role "si-demo"
+     chef.add_role "si-ciudaddelgado"
    end
 end
 
@@ -43,7 +112,7 @@ config.vm.define "ushahidi-si-ayutuxtepeque" do |web_config|
     web_config.omnibus.chef_version = :latest
 
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'ushahidi-si-ayutuxtepeque' 
+     chef.node_name = 'ayutuxtepeque' 
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
