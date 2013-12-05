@@ -88,7 +88,7 @@ config.vm.define "ushahidi-si-apopa" do |web_config|
      chef.cookbooks_path = "./cookbooks"
      chef.roles_path = "./roles"
      chef.add_role "base"
-     chef.add_role "si-ciudaddelgado"
+     chef.add_role "si-apopa"
    end
 end
 
