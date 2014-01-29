@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "sanmartin.observatorio.gob.sv"
+        "url": "sanmartin.observatorio.gob.sv",
+        "municipality": "San Martin"
       }
     }
   },

@@ -1,0 +1,7 @@
+; Sample php environemnt variables (usually put in /etc/php5/conf.d)
+; Local Variables:
+municipality.name = <%= @node[:ushahidi][:application][:municipality] %>
+mail.user = <%= @node[:ushahidi][:mail][:user] %>
+mail.password = <%= @node[:ushahidi][:mail][:password] %>
+db.user = <%= @node[:ushahidi][:db][:password] %>
+db.password = <%= @node[:ushahidi][:db][:password] %>

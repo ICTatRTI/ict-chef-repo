@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "sansalvador.observatorio.gob.sv"
+        "url": "sansalvador.observatorio.gob.sv",
+        "municipality": "San Salvador"
       }
     }
   },

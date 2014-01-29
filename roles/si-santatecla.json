@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "santatecla.observatorio.gob.sv"
+        "url": "santatecla.observatorio.gob.sv",
+        "municipality": "Santa Tecla"
       }
     }
   },

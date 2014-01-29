@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "ayutuxtepeque.observatorio.gob.sv"
+        "url": "ayutuxtepeque.observatorio.gob.sv",
+        "municipality": "Ayutuxtepeque"
       }
     }
   },

@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "apopa.observatorio.gob.sv"
+        "url": "apopa.observatorio.gob.sv",
+        "municipality": "Apopa"
       }
     }
   },

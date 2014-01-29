@@ -48,6 +48,13 @@ template "/etc/mysql/ushahidi-grants.sql" do
   notifies :run, resources(:execute => "mysql-install-ushahidi-privileges"), :immediately
 end
 
+template "/etc/php5/conf.d/si.ini" do
+  source "si.ini.erb"
+  owner "root"
+  group "root"
+  mode "0600"
+end
+
 execute "create #{node['ushahidi']['db']['schema']} database" do
   command "/usr/bin/mysqladmin -u root -p#{node['mysql']['server_root_password']} create #{node['ushahidi']['db']['schema']}"
   not_if "mysql -u root -p#{node['mysql']['server_root_password']} --silent --skip-column-names --execute=\"show databases like '#{node['ushahidi']['db']['schema']}'\" | grep #{node['ushahidi']['db']['schema']}"
@@ -117,6 +124,47 @@ execute "initialize geodata database" do
   command "/usr/bin/mysql -u #{node['ushahidi']['db']['user']}  -p#{node['ushahidi']['db']['password']}  geodata < /etc/mysql/geodata.sql"
   not_if "mysql -u root -p#{node['mysql']['server_root_password']} geodata --execute=\"show tables\" | grep ."
  end
+
+directory "/opt/usage_reports" do
+  owner "root"
+  group "root"
+  mode 00644
+  action :create
+end
+
+ cookbook_file "/opt/usage_reports/composer.json" do
+  source "composer.json"
+  owner "root"
+  mode "644"
+end
+
+ cookbook_file "/opt/usage_reports/template.php" do
+  source "template.php"
+  owner "root"
+  mode "644"
+end
+
+ cookbook_file "/opt/usage_reports/mail.php" do
+  source "mail.php"
+  owner "root"
+  mode "644"
+end
+
+# Install Composer
+execute "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin" do
+  action :run
+end
+
+ruby_block "Rename file" do
+  block do
+    ::File.rename('/usr/local/bin/composer.phar','/usr/local/bin/composer')
+  end
+end
+
+execute "composer update" do
+  cwd "/opt/usage_reports"
+  action :run
+end
 
 ## Configure
 ruby_block "Rename configuration file" do

@@ -13,7 +13,8 @@
     "ushahidi": {
       "application": {
         "version":"seguridad-inalambrica",
-        "url": "ciudaddelgado.observatorio.gob.sv"
+        "url": "ciudaddelgado.observatorio.gob.sv",
+        "municipality": "Ciudaddelgado"
       }
     }
   },
