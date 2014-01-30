@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# This runs the monthly usage report
+#
+
+cd /opt/usage_reports
+php mail.php

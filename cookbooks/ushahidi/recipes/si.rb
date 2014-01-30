@@ -166,6 +166,13 @@ execute "composer update" do
   action :run
 end
 
+cookbook_file "/etc/cron.monthly/usage_reports" do
+  source "usage_reports"
+  owner "root"
+  mode "744"
+end
+
+
 ## Configure
 ruby_block "Rename configuration file" do
   block do
