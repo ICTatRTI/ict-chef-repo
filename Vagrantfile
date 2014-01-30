@@ -7,11 +7,16 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-
 config.vm.define "ushahidi-si-demo" do |web_config|
     
-    web_config.vm.box = "digital_ocean"
-    web_config.omnibus.chef_version = :latest
+    # web_config.vm.box = "digital_ocean"
+    # web_config.omnibus.chef_version = :latest
+    
+    web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
+    web_config.vm.box = "opscode-ubuntu-1204"
+    
+    web_config.vm.network :forwarded_port, guest: 80, host: 8888
+    web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
      chef.node_name = 'ushahidi' 
@@ -21,6 +26,8 @@ config.vm.define "ushahidi-si-demo" do |web_config|
      chef.add_role "si-demo"
    end
 end
+
+   
 
 config.vm.define "ushahidi-si-antigou" do |web_config|
     
@@ -120,15 +127,16 @@ config.vm.define "ushahidi-si-ayutuxtepeque" do |web_config|
    end
 end
 
-   # Set the environment variables like this:
-   #   export DIGITAL_OCEAN_CLIENT_ID=abcdefghijklmnop
+   #  
+   # Uncomment all of this when using the digital ocean provider
+   # export DIGITAL_OCEAN_CLIENT_ID=abcdefghijklmnop
 
-   config.ssh.private_key_path = "~/.ssh/ictadmin_rsa"
-   config.vm.provider :digital_ocean do |provider|
-    provider.client_id = ENV['DIGITAL_OCEAN_CLIENT_ID']
-    provider.api_key = ENV['DIGITAL_API_KEY']
-    provider.image = "Ubuntu 12.10 x64"
-    provider.region = "New York 2"
-  end
+   #config.ssh.private_key_path = "~/.ssh/ictadmin_rsa"
+   #config.vm.provider :digital_ocean do |provider|
+    #provider.client_id = ENV['DIGITAL_OCEAN_CLIENT_ID']
+    #provider.api_key = ENV['DIGITAL_API_KEY']
+    #provider.image = "Ubuntu 12.10 x64"
+    #provider.region = "New York 2"
+  #end
   
 end
