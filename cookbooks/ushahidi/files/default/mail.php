@@ -27,7 +27,7 @@ $mail->Username = get_cfg_var('mail.user');
 $mail->Password = get_cfg_var('mail.password');
 $mail->setFrom('cict.rti@gmail.com', 'ICT@RTI');
 $mail->addReplyTo('no-reply@rti.org', 'Please do not reply');
-$mail->addAddress('apreston@rti.org', 'Adam Preston');
+$mail->addAddress('si-reports@rti.org', 'Seguridad Inalambrica Reports');
 $mail->Subject = 'Seguridad Inalambrica: monthly usage reports for '. get_cfg_var('municipality.name');
 $mail->msgHTML($message);
 //Replace the plain text body with one created manually
