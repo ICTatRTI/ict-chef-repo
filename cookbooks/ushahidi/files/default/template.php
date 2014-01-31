@@ -3,7 +3,7 @@
 
 //Get connection information from environment
 $dbcon = mysql_connect('localhost',get_cfg_var('db.user'),get_cfg_var('db.password')) or halt("Could not connect to database");
-if(!mysql_select_db("ushahidi")) halt("Database not found!");
+if(!mysql_select_db("ushahidi")) exit("Database not found!");
 
 
 // Approved vs Pending Report
