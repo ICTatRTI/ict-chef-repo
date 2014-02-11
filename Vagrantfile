@@ -15,7 +15,8 @@ config.vm.define "ushahidi-si-demo" do |web_config|
     web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
     web_config.vm.box = "opscode-ubuntu-1204"
     
-    web_config.vm.network :forwarded_port, guest: 80, host: 8888
+    web_config.vm.network :forwarded_port, guest: 80, host: 8080
+    web_config.vm.network :forwarded_port, guest: 443, host: 8443
     web_config.vm.network :forwarded_port, guest: 3306, host: 3333
 
     web_config.vm.provision :chef_solo do |chef|
