@@ -8,7 +8,11 @@
     "mysql": {
      "server_root_password": "idgpass",
      "server_repl_password": "idgpass",
-     "server_debian_password": "idgpass"
+     "server_debian_password": "idgpass",
+     "tunable": {
+        "max_connections": "20",
+        "key_buffer":"64M"
+     }
     },
     "ushahidi": {
       "application": {
@@ -20,7 +24,8 @@
   },
   "chef_type": "role",
   "run_list": [
-     "recipe[ushahidi::si]"
+     "recipe[ushahidi::si]",
+     "recipe[java]"
   ],
   "env_run_lists": {
   }
