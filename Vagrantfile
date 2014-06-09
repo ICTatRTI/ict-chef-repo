@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
     web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
 
     web_config.vm.box = "opscode-ubuntu-1204"
-    web_config.vm.network :forwarded_port, guest: 80, host: 8888
-    web_config.vm.network :forwarded_port, guest: 3306, host: 3333
+    web_config.vm.network :forwarded_port, guest: 80, host: 8080
+    web_config.vm.network :forwarded_port, guest: 3306, host: 3307
     #web_config.vm.synced_folder ENV['DOC_ROOT_PATH'], "/var/www"
 
     web_config.vm.provision :chef_solo do |chef|
