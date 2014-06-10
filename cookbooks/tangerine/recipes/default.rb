@@ -53,9 +53,16 @@ gem_package "sinatra-cross_origin" do
   action :install
 end
 
+gem_package "mime-types" do
+  action :install
+  version "1.16"
+end
+
 gem_package "rest-client" do
   action :install
 end
+
+
 
 execute "git clone https://github.com/Tangerine-Community/tree.git" do
   cwd "#{node.tangerine.wwwdir}"
