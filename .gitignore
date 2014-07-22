@@ -9,3 +9,4 @@
 .vagrant
 .chef
 .idea 
+.kitchen

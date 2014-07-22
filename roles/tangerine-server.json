@@ -1,6 +1,6 @@
 {
   "name": "tangerine",
-  "description": "",
+  "description": "An app for assessing math and reading skills, designed for tablets but works everywhere",
   "json_class": "Chef::Role",
   "default_attributes": {
   },
@@ -13,7 +13,6 @@
     "recipe[apache2::mod_proxy]",
     "recipe[apache2::mod_proxy_http]",
     "recipe[couchdb]",
-    "recipe[ruby]",
     "recipe[rake]",
     "recipe[passenger_apache2]",
     "recipe[tangerine]"
