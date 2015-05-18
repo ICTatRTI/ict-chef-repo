@@ -1,41 +1,24 @@
+Vagrant.configure('2') do |config|
 
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-Vagrant.configure("2") do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
-
-  config.vm.define :emis_toolbox do |web_config|
+  config.vm.define "emistoolbox" do |web_config|
     
-    # The url from where the 'config.vm.box' box will be fetched if it
-    # doesn't already exist on the user's system.
-    web_config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.2.0.box"
-
-    web_config.vm.box = "opscode-ubuntu-1204"
-    web_config.vm.network :forwarded_port, guest: 8080, host: 8888
-    web_config.vm.network :forwarded_port, guest: 3306, host: 3333
-
     web_config.vm.provision :chef_solo do |chef|
-     chef.node_name = 'emis_toolbox' 
-     chef.cookbooks_path = "./cookbooks"
-     chef.roles_path = "./roles"
-     chef.add_role "base"
-     chef.add_role "emis"
-   end
-    
-    # uncomment all of this stuff to use the AWS plugin
-     # web_config.vm.provider :aws do |aws, override|
-       # aws.access_key_id = "your.key"
-       # aws.secret_access_key = "your.secret.key"
-       # aws.keypair_name = "Your Key Pair Name"
-       # aws.ami = "ami-7747d01e"
-       # aws.security_groups = ["Basic Access"]
-       # override.ssh.username = "ubuntu"
-       # override.ssh.private_key_path = "/path/to/private/key"
-     # end
-
+     chef.node_name = 'emistoolbox' 
+     chef.cookbooks_path = './cookbooks'
+     chef.roles_path = './roles'
+     chef.add_role 'base'
+     chef.add_role 'emis'
+    end
   end
-  
+
+  config.vm.provider :digital_ocean do |provider, override|
+    override.ssh.private_key_path = ENV['SSL_KEY_PATH']
+    override.vm.box = 'digital_ocean'
+    override.vm.box_url = 'https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box'
+
+    provider.token = ENV['DIGITAL_OCEAN_TOKEN']
+    provider.image = 'ubuntu-14-04-x64'
+    provider.region = 'nyc2'
+    provider.size = '2gb'
+  end
 end

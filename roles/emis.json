@@ -18,6 +18,7 @@
   "chef_type": "role",
   "run_list": [
      "recipe[mysql::server]",
+     "recipe[apache]",
      "recipe[tomcat]",
      "recipe[emis_toolkit]"
   ],

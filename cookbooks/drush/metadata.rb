@@ -1,3 +1,4 @@
+name			"drush"
 maintainer       "Mark Sonnabaum"
 maintainer_email "mark.sonnabaum@acquia.com"
 license          "Apache 2.0"
